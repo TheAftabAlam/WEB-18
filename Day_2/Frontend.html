@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         #nav{
+            display: flex;
+            width: 90%;
+            background-color: Black;
+            color: Whie;
+            margin: auto;
+            padding: 5px;
+            justify-content: space-around
+        }
+        a{
+            color: white;
+            padding: 30px;
+            list-style: none;
+            text-decoration: none;
+            font-size: 20px;
+
+        }
+       
+        
+        h2{
+            color: white;
+            padding: 30px;
+            list-style: none;
+            text-decoration: none;
+            font-size: 20px;
+
+        }
+         #card{
+             width: 90%;
+           
+             margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: auto;
+            gap:20px;
+            justify-content: space-between;
+        }
+        #card>div{
+            padding: 5px;
+            box-sizing: border-box;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+           margin: 10px 0;
+            text-align: center;
+        }
+       #imagePic{
+            width: 100%;
+        }
+        p+img{
+            width: 40%;
+            display: block;
+            margin: auto;
+            margin-top: -20px;
+        }
+
+
+       
+       
+    </style>
+</head>
+<body>
+    <div id="nav">
+
+        <a href="Backend.html">Backend</a>
+
+        <a href="Frontend.html">Frontend</a>
+   
+</div>
+    <div id="card">
+        
+    </div>
+</body>
+</html>
+<script>
+    var inv=JSON.parse(localStorage.getItem("invData"))
+    console.log(inv)
+
+
+    inv.forEach(function (ele){
+        var box=document.createElement("div")
+
+    var pic=document.createElement("img")
+    pic.setAttribute("src",ele.img);
+    pic.setAttribute("id","imagePic")
+
+    var name=document.createElement("h3")
+    name.innerText=ele.name;
+
+    var role=document.createElement("p");
+    role.innerText=ele.role;
+
+    var logos=document.createElement("img")
+    logos.setAttribute("src",ele.logo);
+
+    box.append(pic,name,role,logos)
+    document.querySelector("#card").append(box)
+        })
+</script>

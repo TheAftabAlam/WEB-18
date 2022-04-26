@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #nav{
+            display: flex;
+            width: 90%;
+            background-color: Black;
+            color: Whie;
+            margin: auto;
+            padding: 5px;
+            justify-content: space-around
+        }
+        a{
+            color: white;
+            padding: 30px;
+            list-style: none;
+            text-decoration: none;
+            font-size: 20px;
+
+        }
+       
+        
+        h2{
+            color: white;
+            padding: 30px;
+            list-style: none;
+            text-decoration: none;
+            font-size: 20px;
+
+        }
+
+        #report{
+            width: 90%;
+           
+            margin: auto;
+            margin-top: 20px;
+            
+
+        }
+        input{
+            width: 20%;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="nav">
+
+        <a href="Backend.html">Backend</a>
+
+        <a href="Frontend.html">Frontend</a>
+   
+</div>
+    <div id="report">
+        <form id="form">
+            <input type="text" id="name" placeholder="Enter Name"><br>
+            <input type="url" id="imgUrl" placeholder="Enter ImageURL"><br>
+            <input type="url" id="logoUrl" placeholder="Enter logoURL"><br>
+            <input type="text" id="role" placeholder="Enter role"><br>
+            <input type="submit">
+
+        </form>
+    </div>
+</body>
+</html>
+<script>
+    document.querySelector("form").addEventListener("submit",myfun)
+    var arr=[]
+function myfun(){
+    event.preventDefault();
+    var data={
+        name:form.name.value,
+        img:form.imgUrl.value,
+        logo:form.logoUrl.value,
+        role:form.role.value
+     }
+    arr.push(data)
+    localStorage.setItem("invData",JSON.stringify(arr))
+}
+   
+
+
+</script>
