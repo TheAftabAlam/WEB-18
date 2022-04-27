@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            font-family: sans-serif;
+        }
+        img{
+            width: 15%;
+            display: block;
+            margin: auto;
+            margin-top: 60px;
+        }
+        #signin{
+            width: 30%;
+            margin: auto;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        h2{
+            text-align: center;
+        }
+        input{
+            width: 80%;
+            display: block;
+            margin: auto;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid rgb(221, 220, 220);
+            color: rgb(128, 127, 127);
+           
+           
+        }
+        input:nth-child(8){
+            background-color: rgb(240, 238, 238);
+            text-align: center;
+            padding: 15px 0px;
+        }
+        p{
+            text-align:left;
+            margin-left: 30px;
+            font-size: 14px;
+
+        }
+       #cond{
+            color: gray;
+            margin: auto;
+            text-align: center;
+            font-size: 12px;
+            padding: 20px 50px;
+           
+           
+
+        }
+     #cond{
+          
+            padding: 20px;
+            text-align: center;
+        }
+       
+    </style>
+</head>
+<body>
+    <img src="https://www.masaischool.com/img/navbar/logo.svg" alt="">
+    <div id="signin">
+        <h2>Sign In</h2>
+        <form id="form">
+          
+           <p>Email</p>
+         <input type="email" id="email" placeholder="Enter email">
+         <p> Password</p>
+           <input type="password" id="password" placeholder="Enter password">
+          
+        
+    
+        <input type="submit" value="SIGN UP">
+    </form>
+    <p id="cond">Dont`t have an account? <a href="Signup.html">Sign Up</a></p>
+    </div>
+</body>
+</html>
+<script>
+    document.querySelector("#form").addEventListener("submit",mylog)
+    var loginData=JSON.parse(localStorage.getItem("mydata"))
+      function mylog(){
+        event.preventDefault();
+        var LData={
+        email:form.email.value,
+        password:form.password.value
+         }
+
+     
+      for(var i=0; i<loginData.length; i++)
+      {
+         if(loginData[i].email==LData.email && loginData[i].password==LData.password)
+         {
+            alert("Login Successfully") 
+            break;
+         }
+         else{
+             alert("wrong credentials")
+             break;
+         }
+      }
+   }
+ 
+  
+
+
+    
+</script>
