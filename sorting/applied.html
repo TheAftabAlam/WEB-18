@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Database</title>
+    <link rel="stylesheet" href="commonStyles.css" />
+    <style>
+      #BookMark {
+        color: blue;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="links">
+      <div><a href="index.html">Home</a></div>
+      <div><a href="applied.html">Applied Jobs</a></div>
+      <div><a href="bookmark.html">Bookmarks</a></div>
+    </div>
+    <select id="SortbyName">
+      <option>Sort by Name</option>
+      <option value="inc">Accending</option>
+      <option value="dec">Deccending</option>
+    </select>
+    <select id="SortbySalary">
+      <option>Sort by Salary</option>
+      <option value="inc">Accending</option>
+      <option value="dec">Deccending</option>
+    </select>
+    <select id="filter">
+      <option>Filter</option>
+      <option value="FSD">FSD</option>
+      <option value="Frontend">Frontend</option>
+      <option value="Backend">Backend</option>
+    </select>
+
+
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Job applied</th>
+            <th>Salary expected</th>
+            <th>Add to bookmark</th>
+          </tr>
+        </thead>
+        <tbody id="body">
+          <!-- Append your output to tbody -->
+        </tbody>
+      </table>
+    </main>
+  </body>
+  <script>
+    
+    var cat=document.querySelector("#SortbyName")
+     cat.addEventListener("change",sort)
+     function sort(){
+       document.querySelector("tbody").innerHTML=""
+       var selected=document.querySelector("#SortbyName").value;
+       if(selected=="inc")
+       {
+         PersonData.sort(function(a,b)
+         {
+           var x=a.name.toLowerCase();
+           var y=b.name.toLowerCase();
+           if(x>y){
+             return 1;
+           }
+           else if(x<y){
+             return -1;
+           }
+           else{
+             return 0;
+           }
+         })
+         console.log(PersonData)
+         Display(PersonData)
+
+
+       }
+       if(selected=="dec")
+       {
+        PersonData.sort(function(a,b)
+         {
+          var x=a.name.toLowerCase();
+           var y=b.name.toLowerCase();
+           if(x>y){
+             return -1;
+           }
+           else if(x<y){
+             return 1;
+           }
+           else{
+             return 0;
+           }
+         })
+         console.log(PersonData)
+         Display(PersonData)
+      }
+       
+    }
+    var Salary=document.querySelector("#SortbySalary")
+     Salary.addEventListener("change",sortSalary)
+     function sortSalary(){
+       document.querySelector("tbody").innerHTML=""
+       var selected=document.querySelector("#SortbySalary").value;
+       if(selected=="inc")
+       {
+         PersonData.sort(function(a,b)
+         {
+         
+            return a.salary-b.salary;
+          })
+         console.log(PersonData)
+         Display(PersonData)
+
+
+       }
+       if(selected=="dec")
+       {
+       
+          PersonData.sort(function(a,b)
+         {
+          
+            return b.salary-a.salary;
+          })
+        
+         Display(PersonData)
+      }
+       
+    }
+    
+    document.querySelector("#filter").addEventListener("change",filtering)
+    function filtering(){
+      document.querySelector("tbody").innerHTML=""
+      var selected=document.querySelector("#filter").value
+      console.log(selected) 
+      var filt=PersonData.filter(function(elem){
+        return elem.role==selected
+      })
+      Display(filt)
+    }
+    
+    
+    
+    
+    
+    
+    var PersonData=JSON.parse(localStorage.getItem("jobList"))||[]
+    //  console.log(PersonData)
+    Display(PersonData)
+
+    function Display(data){
+      data.forEach(function (ele){
+       var tr=document.createElement("tr")
+       var td1=document.createElement("td")
+       td1.innerText=ele.name;
+
+       var td2=document.createElement("td")
+      td2.innerText=ele.email;
+       var td3=document.createElement("td")
+      td3.innerText=ele.role;
+       var td4=document.createElement("td")
+      td4.innerText=ele.salary
+
+       var td5=document.createElement("td")
+       td5.innerText="BookMark"
+       td5.setAttribute("id","BookMark")
+       td5.addEventListener("click",function(){
+         bookmark(ele)
+       })
+
+      tr.append(td1,td2,td3,td4,td5)
+
+      document.querySelector("#body").append(tr)
+     })
+     var BookMark=[]
+     function bookmark(ele){
+
+       BookMark.push(ele)
+       localStorage.setItem("bookmark",JSON.stringify(BookMark))
+     }
+    }
+
+    
+
+
+  </script>
+</html>
